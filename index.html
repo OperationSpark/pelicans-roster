@@ -6,12 +6,49 @@
 	</style>
 </head>
 <body>
+	<p>
+		Open the console with <kbd>F12</kbd> or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
+	</p>
+	<script src="bower_components/qwest/qwest.min.js"></script>
 	<script>
 		(function() {
 			'use strict'
-			// Place code below
-				
-		})()
+			qwest.get('pelicans-simple.json').then(function(data) {
+				var pelicans = JSON.parse(data);
+
+				var anthonyDavis = {
+					"gamesPlayed": 68,
+					"loses": 29,
+					"name": "Anthony Davis",
+					"playerId": 203076,
+					"position": "Forward-Center",
+					"winPercentage": 0.574,
+					"wins": 39
+				};
+				var tyrekeEvans = {
+					"gamesPlayed": 79,
+					"loses": 36,
+					"name": "Tyreke Evans",
+					"playerId": 201936,
+					"position": "Guard-Forward",
+					"winPercentage": 0.544,
+					"wins": 43
+				};
+				var omerAsik = {
+					"gamesPlayed": 76,
+					"loses": 33,
+					"name": "Omer Asik",
+					"playerId": 201600,
+					"position": "Center",
+					"winPercentage": 0.566,
+					"wins": 43
+				};
+ 
+				window.pelicans = pelicans;
+				window.anthonyDavis = anthonyDavis;
+				window.tyrekeEvans = tyrekeEvans;
+			});
+		})();
 	</script>
 </body>
 </html>
