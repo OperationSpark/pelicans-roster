@@ -16,6 +16,7 @@
     </p>
 
     <main>
+	    <p>Select some of the options below to view some data on pelicans players</p>
     	<fieldset>
 	    	<label>
 	    		<input type="radio" name="whatToShow" value="names">
@@ -38,14 +39,13 @@
     	</ul>
     </main>
 
-    <script src="bower_components/qwest/qwest.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/lodash/lodash.min.js"></script>
     <script src="rosterHelpers.js"></script>
     <script>
     (function() {
         'use strict'
-        qwest.get('pelicans-simple.json').then(function(data) {
-            var pelicans = JSON.parse(data);
+        $.getJSON('pelicans-simple.json').then(function(pelicans) {
 
             // Delete this next block of code after you are done playing with this
             // as instructed in the lecture

@@ -24,13 +24,14 @@
 	};
 
 	var showInList = function(selector, listOfStrings) {
-		var element = document.querySelector(selector);
-		if(!element) {
+		var element = $(selector);
+		if(!element[0]) {
 			throw Error("No element found that matches the selector '" + selector + "'");
 		}
-		element.innerHTML = listOfStrings.map(function(s) { 
+		var newHtml = listOfStrings.map(function(s) { 
 			return "<li>" + s + "</li>"; 
 		}).join('\n');
+		element.html(newHtml);
 	};
 
 
