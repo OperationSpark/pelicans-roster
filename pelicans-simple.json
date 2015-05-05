@@ -1,6 +1,7 @@
 [
     {
         "gamesPlayed": 68,
+        "jersey": "42",
         "loses": 27,
         "name": "Alexis Ajinca",
         "playerId": 201582,
@@ -10,6 +11,7 @@
     },
     {
         "gamesPlayed": 68,
+        "jersey": "23",
         "loses": 29,
         "name": "Anthony Davis",
         "playerId": 203076,
@@ -19,6 +21,7 @@
     },
     {
         "gamesPlayed": 79,
+        "jersey": "1",
         "loses": 36,
         "name": "Tyreke Evans",
         "playerId": 201936,
@@ -28,6 +31,7 @@
     },
     {
         "gamesPlayed": 76,
+        "jersey": "3",
         "loses": 33,
         "name": "Omer Asik",
         "playerId": 201600,
@@ -37,6 +41,7 @@
     },
     {
         "gamesPlayed": 35,
+        "jersey": "25",
         "loses": 17,
         "name": "Austin Rivers",
         "playerId": 203085,
@@ -46,6 +51,7 @@
     },
     {
         "gamesPlayed": 66,
+        "jersey": "44",
         "loses": 29,
         "name": "Dante Cunningham",
         "playerId": 201967,
@@ -73,6 +79,7 @@
     },
     {
         "gamesPlayed": 61,
+        "jersey": "10",
         "loses": 26,
         "name": "Eric Gordon",
         "playerId": 201569,
@@ -91,6 +98,7 @@
     },
     {
         "gamesPlayed": 37,
+        "jersey": "5",
         "loses": 20,
         "name": "Jeff Withey",
         "playerId": 203481,
@@ -100,6 +108,7 @@
     },
     {
         "gamesPlayed": 50,
+        "jersey": "32",
         "loses": 23,
         "name": "Jimmer Fredette",
         "playerId": 202690,
@@ -118,6 +127,7 @@
     },
     {
         "gamesPlayed": 40,
+        "jersey": "11",
         "loses": 20,
         "name": "Jrue Holiday",
         "playerId": 201950,
@@ -127,6 +137,7 @@
     },
     {
         "gamesPlayed": 63,
+        "jersey": "8",
         "loses": 29,
         "name": "Luke Babbitt",
         "playerId": 202337,
@@ -145,6 +156,7 @@
     },
     {
         "gamesPlayed": 28,
+        "jersey": "30",
         "loses": 10,
         "name": "Norris Cole",
         "playerId": 202708,
@@ -154,6 +166,7 @@
     },
     {
         "gamesPlayed": 45,
+        "jersey": "20",
         "loses": 18,
         "name": "Quincy Pondexter",
         "playerId": 202347,
@@ -163,6 +176,7 @@
     },
     {
         "gamesPlayed": 6,
+        "jersey": "2",
         "loses": 2,
         "name": "Russ Smith",
         "playerId": 203893,
@@ -172,6 +186,7 @@
     },
     {
         "gamesPlayed": 61,
+        "jersey": "33",
         "loses": 28,
         "name": "Ryan Anderson",
         "playerId": 201583,
@@ -181,6 +196,7 @@
     },
     {
         "gamesPlayed": 12,
+        "jersey": "16",
         "loses": 5,
         "name": "Toney Douglas",
         "playerId": 201962,

@@ -28,10 +28,6 @@
 		if(!element[0]) {
 			throw Error("No element found that matches the selector '" + selector + "'");
 		}
-		var newHtml = listOfStrings.map(function(s) { 
-			return "<li>" + s + "</li>"; 
-		}).join('\n');
-		element.html(newHtml);
 	};
 
 
