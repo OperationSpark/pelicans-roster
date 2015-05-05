@@ -25,7 +25,13 @@
 
 
 	window.rosterHelpers = {
+		// Group an array of objects by the value of a single property on these objects
+		// Usage:
+		//     rosterHelpers.groupByProperty( players, 'positon' );
 		groupByProperty: groupByProperty,
+		// Sum up an array of values
+		// Usage:
+		//     rosterHelpers.sum( playerPointsScored );
 		sum: sum,
 	};
 }).call();
