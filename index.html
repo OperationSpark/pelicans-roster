@@ -4,83 +4,135 @@
 <head>
     <title>Pelicans App</title>
     <style>
+    	body {
+    		display: flex;
+    		min-height: 100vh;
+    		flex-direction: column;
+    	}
+    	main {
+    		flex: 1;
+    	}
     	label {
     		display: block;
+    	}
+    	:disabled+*{
+			color: rgb(100, 100, 100);
+			text-decoration: line-through;
+		}
+
+    	[id=players-display] b {
+    		color: blue;
+    		font-weight: bold;
+    	}
+    	[class=player-id] {
+    		font-family: consolas;
+    		font-size: 70%;
+    		vertical-align: middle;
     	}
     </style>
 </head>
 
 <body>
-    <p>
-        Open the console with <kbd>F12</kbd> or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
-    </p>
-
     <main>
 	    <p>Select some of the options below to view some data on pelicans players</p>
     	<fieldset>
 	    	<label>
 	    		<input type="radio" name="whatToShow" value="names">
-	    		<span class="label">Show player names only</span>
+	    		<span class="label">Show player names only <em>(Anthony Davis)</em></span>
 	    	</label>
 	    	<label>
 	    		<input type="radio" name="whatToShow" value="names-numbers">
-	    		<span class="label">Show player names and number</span>
-	    	</label>
-	    		<input type="radio" name="whatToShow" value="wins-names">
-	    		<span class="label">Show player wins and names</span>
+	    		<span class="label">Show player names and number <em>(Anthony Davis - 23)</em></span>
 	    	</label>
 	    	<label>
-	    		<input type="radio" name="whatToShow" value="id-name-position">
-	    		<span class="label">Show player id, name, and position</span>
+	    		<input type="radio" name="whatToShow" value="wins-names">
+	    		<span class="label">Show player wins and names <em>(39 by Anthony Davis)</em></span>
 	    	</label>
+
+	    	<label>
+	    		<input type="radio" name="whatToShow" value="id-name-position" disabled >
+	    		<span class="label">Show player id, name, and position <em>(203076: Anthony Davis (Forward-Center))</em></span>
+	    	</label>
+	    	<label>
+	    		<input type="checkbox" name="shouldSort" disabled >
+	    		<span class="label">Sort players</span>
+	    	</label>
+
     	</fieldset>
+
     	<ul id="players-display">
-    		
     	</ul>
+
     </main>
+    <aside>
+        Remember, you can open the console with
+        <ul> 
+        	<li> <kbd>F12</kbd> </li>
+        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> </li>
+        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> </li>
+        	<li> Right click > Inspect Element </li>
+    </aside>
+
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/lodash/lodash.min.js"></script>
     <script src="rosterHelpers.js"></script>
     <script>
     (function() {
-        'use strict'
-        $.getJSON('pelicans-simple.json').then(function(pelicans) {
+        "use strict"
+        $.getJSON("pelicans-simple.json").then(function(pelicans) {
+        	var displayType;
+        	var shouldSort;
 
-            // Delete this next block of code after you are done playing with this
-            // as instructed in the lecture
-            // ˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅˅
-            var anthonyDavis = {
-                "gamesPlayed": 68,
-                "loses": 29,
-                "name": "Anthony Davis",
-                "playerId": 203076,
-                "position": "Forward-Center",
-                "winPercentage": 0.574,
-                "wins": 39
-            };
-            var tyrekeEvans = {
-                "gamesPlayed": 79,
-                "loses": 36,
-                "name": "Tyreke Evans",
-                "playerId": 201936,
-                "position": "Guard-Forward",
-                "winPercentage": 0.544,
-                "wins": 43
-            };
-            var omerAsik = {
-                "gamesPlayed": 76,
-                "loses": 33,
-                "name": "Omer Asik",
-                "playerId": 201600,
-                "position": "Center",
-                "winPercentage": 0.566,
-                "wins": 43
-            };
-            window.anthonyDavis = anthonyDavis;
-            window.tyrekeEvans = tyrekeEvans;
-            window.omerAsik = omerAsik;
-            // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        	var getName = function(player) {
+        		//TODO 2: return player name
+        		console.log("get name for", player.name);
+        	};
+
+        	var getNamesAndNumbers = function(player) {
+        		//TODO 3: return a string with the player name and number
+        		console.log("get name and number for", player.name);
+        	}
+
+        	var getWinsAndNames = function(player) {
+        		//TODO 4: return a string for the player wins and name
+        		console.log("get wins and name for", player.name);
+        	}
+        	// TODO 5: remove the disabled attribute marker from the id-name-position radio input html above. Make it work by creating new functions 
+
+        	var getDisplayedPlayerStrings = function() {
+        		var displayStrings = [];
+
+        		// TODO 1: write if statements that call teh correct functions
+        		// if displayType === "names" use getName to map every item in players and store the result in displayString
+        		// if displayType === "names-numbers", do the same thing but with getNamesAndNumbers
+        		// etc
+
+        		return displayStrings;
+        	}	
+
+        	var updateDisplay = function() {
+        		var displayedStrings = getDisplayedPlayerStrings();
+
+        		// TODO 6: If shouldSort is true call displayStrings.sort() and put the result back into the displayStrings variable. Enable the checkbox input in html
+
+				var newDisplayHtml = displayedStrings.map(function(s) { 
+					return "<li>" + s + "</li>"; 
+				}).join("\n");
+
+        		$("[id=players-display]").html( newDisplayHtml );
+        	}
+
+        	$("[name=whatToShow]").on("change", function(e){
+        		displayType = $(e.target).val();
+        		updateDisplay();
+        	});
+        	$("[name=shouldSort]").on("change", function(e){
+        		shouldSort = $(e.target).is(':checked');
+        		updateDisplay();
+        	});
+
+        	updateDisplay();
 
             window.pelicans = pelicans;
         });
