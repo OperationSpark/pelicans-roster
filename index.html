@@ -28,15 +28,15 @@
 	    <p>Select some of the options below to view some data on pelicans players</p>
     	<fieldset>
 	    	<label>
-	    		<input type="radio" name="whatToShow" value="names">
+	    		<input type="radio" name="whatToShow" value="names" disabled >
 	    		<span class="label">Show player names only <em>(Anthony Davis)</em></span>
 	    	</label>
 	    	<label>
-	    		<input type="radio" name="whatToShow" value="names-numbers">
+	    		<input type="radio" name="whatToShow" value="names-numbers" disabled >
 	    		<span class="label">Show player names and number <em>(Anthony Davis - 23)</em></span>
 	    	</label>
 	    	<label>
-	    		<input type="radio" name="whatToShow" value="wins-names">
+	    		<input type="radio" name="whatToShow" value="wins-names" disabled >
 	    		<span class="label">Show player wins and names <em>(39 by Anthony Davis)</em></span>
 	    	</label>
 
@@ -80,12 +80,12 @@
         		console.log("get name for", player.name);
         	};
 
-        	var getNamesAndNumbers = function(player) {
+        	var getNameAndNumber = function(player) {
         		//TODO 3: return a string with the player name and number
         		console.log("get name and number for", player.name);
         	}
 
-        	var getWinsAndNames = function(player) {
+        	var getWinsAndName = function(player) {
         		//TODO 4: return a string for the player wins and name
         		console.log("get wins and name for", player.name);
         	}
@@ -94,9 +94,9 @@
         	var getDisplayedPlayerStrings = function() {
         		var displayStrings = [];
 
-        		// TODO 1: write if statements that call teh correct functions
+        		// TODO 1: write if statements that call the correct functions
         		// if displayType === "names" use getName to map every item in players and store the result in displayString
-        		// if displayType === "names-numbers", do the same thing but with getNamesAndNumbers
+        		// if displayType === "names-numbers", do the same thing but with getNameAndNumber
         		// etc
 
         		return displayStrings;
@@ -107,8 +107,8 @@
 
         		// TODO 6: If shouldSort is true call displayStrings.sort() and put the result back into the displayStrings variable. Enable the checkbox input in html
 
-				var newDisplayHtml = displayedStrings.map(function(s) { 
-					return "<li>" + s + "</li>"; 
+				var newDisplayHtml = displayedStrings.map(function(string) { 
+					return "<li>" + string + "</li>"; 
 				}).join("\n");
 
         		$("[id=players-display]").html( newDisplayHtml );

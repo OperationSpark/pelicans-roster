@@ -23,17 +23,9 @@
 	  }, 0);
 	};
 
-	var showInList = function(selector, listOfStrings) {
-		var element = $(selector);
-		if(!element[0]) {
-			throw Error("No element found that matches the selector '" + selector + "'");
-		}
-	};
-
 
 	window.rosterHelpers = {
 		groupByProperty: groupByProperty,
 		sum: sum,
-		showInList: showInList,
 	};
 }).call();
