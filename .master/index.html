@@ -89,7 +89,11 @@
         	};
 
         	var getNamesAndNumbers = function(player) {
-        		return player.name + " - " + player.jersey;
+                var jerseyNumber = player.jersey;
+                if(!player.jersey) {
+                    jerseyNumber = "(no number)";
+                }
+        		return player.name + " - " + jerseyNumber;
         	}
 
         	var getWinsAndNames = function(player) {
@@ -125,11 +129,11 @@
         	}	
 
         	var updateDisplay = function() {
-        		var displayedStrings = getDisplayedPlayerStrings();
+        		var stringsToDisplay = getDisplayedPlayerStrings();
         		if(shouldSort) {
-        			displayedStrings = displayedStrings.sort();
+        			stringsToDisplay = stringsToDisplay.sort();
         		}
-				var newDisplayHtml = displayedStrings.map(function(s) { 
+				var newDisplayHtml = stringsToDisplay.map(function(s) { 
 					return "<li>" + s + "</li>"; 
 				}).join("\n");
 

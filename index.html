@@ -103,11 +103,11 @@
         	}	
 
         	var updateDisplay = function() {
-        		var displayedStrings = getDisplayedPlayerStrings();
+        		var stringsToDisplay = getDisplayedPlayerStrings();
 
         		// TODO 6: If shouldSort is true call displayStrings.sort() and put the result back into the displayStrings variable. Enable the checkbox input in html
 
-				var newDisplayHtml = displayedStrings.map(function(string) { 
+				var newDisplayHtml = stringsToDisplay.map(function(string) { 
 					return "<li>" + string + "</li>"; 
 				}).join("\n");
 
