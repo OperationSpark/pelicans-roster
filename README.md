@@ -20,7 +20,7 @@ Ok, time to get started. See those controls at the top? Let's get these working.
 
 Start by enabling the first input by removing the `disabled` attributed from 
 
-	&lt;input type="radio" name="whatToShow" value="names" disabled &gt;
+	<input type="radio" name="whatToShow" value="names" disabled >
 
 You will now be able to click it.
 
