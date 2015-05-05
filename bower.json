@@ -24,6 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "qwest": "~1.5.11"
+    "qwest": "~1.5.11",
+    "lodash": "~3.8.0"
   }
 }
