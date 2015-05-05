@@ -26,7 +26,7 @@ You will now be able to click it.
 
 When any button value changes this function will be triggered. It should go through all `pelicans` and create a new array. This new array will be *just* strings each of which will be an item that will be put into the output list.
 
-Start by finding the `TODO 1` marker in the `getDisplayedPlayerStrings` javascript function. We have the `pelicans` (array) variable and the `displayType` (string) variable available to us. Start by checking if the `displayType` is equal to `"name"`. If it is you should call `map` on the `pelicans` array with `getName` as an argument. Put the results into the `displayStrings` variable.
+Start by finding the `TODO 1` marker in the `getDisplayedPlayerStrings` javascript function. We have the `pelicans` (array) variable and the `displayType` (string) variable available to us. Start by checking if the `displayType` is equal to `"names"`. If it is you should call `map` on the `pelicans` array with `getName` as an argument. Put the results into the `displayStrings` variable.
 
 When you run the application and click the first radio button you should now see the some outputs to the console. To get the display working you need to find the `TODO 2` marker and implement the `getName` function.
 
@@ -71,4 +71,18 @@ Play around with the UI. You should now be able to sort the display by checking 
 You might note that some players (like *Darius Miller*) haven't played enough to have a jersey number assigned. Their display looks wierd when the second option is selected. See if you can figure out how to fix that so that it displays something like
 
     Darius Miller - (no number)
+
+# Bonus 2 - Display wins in blue
+
+When displaying wins and names it makes sense for all the wins to stick out. Let's color them blue. *(What do we use here? html? javascript? css?)*
+
+To do this we will have to put some html around the wins count so that we could use a CSS selector. Fortunately when we build up the strings we can use html. The `<em>` elements seems right for this. Change the function that picks the wins and player name so that it outputs something like
+
+    <em>39</em> by Anthony Davis
+
+Use css in the `<style>` toward the top to change all `em` elements so that their font [is blue](http://www.w3schools.com/cssref/pr_text_color.asp) and [bold](http://www.w3schools.com/cssref/pr_font_weight.asp).
+
+# Bonus 3 - Display player id smaller
+
+The player id when selecting the last radio button isn't really as important. Make just the player id use the consolas font and 70% smaller.
     
