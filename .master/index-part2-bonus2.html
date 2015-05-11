@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pelicans App</title>
+    <style>
+    	body {
+    		display: flex;
+    		min-height: 100vh;
+    		flex-direction: column;
+    	}
+    	main {
+    		flex: 1;
+    	}
+    	label {
+    		display: block;
+    	}
+        :disabled+*{
+            color: rgb(100, 100, 100);
+            text-decoration: line-through;
+        }
+        
+    	[id=players-display] b {
+    		color: blue;
+    		font-weight: bold;
+    	}
+    	[class=player-id] {
+    		font-family: consolas;
+    		font-size: 70%;
+    		vertical-align: middle;
+    	}
+
+        footer {
+            color: rgb(100,100,200);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+	    <p>Select some of the options below to view some data on pelicans players</p>
+    	<fieldset>
+	    	<label>
+	    		<input type="radio" name="whatToShow" value="names">
+	    		<span class="label">Show player names only <em>(Anthony Davis)</em></span>
+	    	</label>
+	    	<label>
+	    		<input type="radio" name="whatToShow" value="names-numbers">
+	    		<span class="label">Show player names and number <em>(Anthony Davis - 23)</em></span>
+	    	</label>
+	    	<label>
+	    		<input type="radio" name="whatToShow" value="wins-names">
+	    		<span class="label">Show player wins and names <em>(39 by Anthony Davis)</em></span>
+	    	</label>
+	    	<label>
+	    		<input type="radio" name="whatToShow" value="id-name-position">
+	    		<span class="label">Show player id, name, and position <em>(203076: Anthony Davis (Forward-Center))</em></span>
+	    	</label>
+
+	    	<label>
+	    		<input type="checkbox" name="shouldSort">
+	    		<span class="label">Sort players</span>
+	    	</label>
+
+    	</fieldset>
+
+        <h2>Part 2</h2>
+        <fieldset>
+            <label>
+                <input type="checkbox" name="hidePlayersWithoutPosition">
+                <span class="label">Hide players without a position</span>
+            </label>
+            <label>
+                <input type="checkbox" name="showOnlyMajorPlayers">
+                <span class="label">Show only major players (anyone who has played in over 40 games)</span>
+            </label>
+            <label>
+                <input type="checkbox" name="hidePlayersUsingWins">
+                <span class="label">Hide players with less than <input name="minNumberOfWins" value="25"> wins </span>
+            </label>
+            <label>
+                <input type="checkbox" name="showPlayersWithGoodFreeThrowPercentage">
+                <span class="label">Show only players with free-throw percentage over 75%</span>
+            </label>          
+        </fieldset>
+
+    	<ul id="players-display">
+    	</ul>
+
+        <footer></footer>
+
+    </main>
+    <aside>
+        Remember, you can open the console with
+        <ul> 
+        	<li> <kbd>F12</kbd> </li>
+        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> </li>
+        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> </li>
+        	<li> Right click > Inspect Element </li>
+    </aside>
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/lodash/lodash.min.js"></script>
+    <script src="rosterHelpers.js"></script>
+    <script>
+    (function() {
+        "use strict"
+        $.getJSON("pelicans-extended.json").then(function(pelicans) {
+        	var displayType;
+        	var shouldSort;
+            var filterPlayersWithoutPosition = false;
+            var filterMinorPlayers = false;
+            var filterPlayersByWins = false;
+            var minNumberOfWins = 25;
+            var filterPlayersByFreeThrowPercentage = false;
+
+        	var getName = function(player) {
+        		return player.name;
+        	};
+
+        	var getNamesAndNumbers = function(player) {
+                var jerseyNumber = player.info.jersey;
+                if(!player.info.jersey) {
+                    jerseyNumber = "(no number)";
+                }
+        		return player.name + " - " + jerseyNumber;
+        	}
+
+        	var getWinsAndNames = function(player) {
+        		return "<b>" + player.wins + "</b> by " + player.name;
+        	}
+
+        	var getIdNameAndPosition = function(player) {
+        		return "<span class='player-id'>" + player.playerId + ":</span> " + player.name + " (" + player.position + ")";
+        	}
+
+            function isGuard(person) {
+                var positionIsGuard;
+                if(person.position === 'Guard') {
+                    positionIsGuard = true;
+                }
+                else {
+                    positionIsGuard = false;
+                }
+                return positionIsGuard;
+            }
+
+            function hasPosition(person) {
+                return person.position != '';
+            }
+
+            function hasPlayedInOver40Games(person) {
+                return person.gamesPlayed > 40;
+            }
+
+            function hasMinNumberOfWins(person) {
+                return person.wins >= minNumberOfWins;
+            }
+
+            function hasGoodFreeThrowPercentage(person) {
+                if(person.averages.freeThrowsMade === 0) {
+                    return false;
+                }
+                return person.averages.freeThrowsAttempted / person.averages.freeThrowsMade > 0.75;
+            }
+
+        	var getDisplayedPlayerStrings = function() {
+                var pelicansToShow = pelicans;
+
+                // Removed by later step
+                // console.log("pelicansToShow = ",pelicansToShow);
+                // pelicansToShow = pelicansToShow.filter(isGuard);
+                // console.log("pelicansToShow (after filter) = ",pelicansToShow);
+
+                if(filterPlayersWithoutPosition) {
+                    pelicansToShow = pelicansToShow.filter(hasPosition);
+                }
+                if(filterMinorPlayers) {
+                    pelicansToShow = pelicansToShow.filter(hasPlayedInOver40Games);                    
+                }
+                if(filterPlayersByWins) {
+                    pelicansToShow = pelicansToShow.filter(hasMinNumberOfWins)
+                }
+                if(filterPlayersByFreeThrowPercentage) {
+                    pelicansToShow = pelicansToShow.filter(hasGoodFreeThrowPercentage)
+                }
+        		var displayStrings = [];
+
+        		if(displayType === "names") {
+
+        			displayStrings = pelicansToShow.map(getName);
+
+        		} else if(displayType === "names-numbers") {
+
+        			displayStrings = pelicansToShow.map(getNamesAndNumbers);
+
+        		} else if(displayType === "wins-names") {
+
+        			displayStrings = pelicansToShow.map(getWinsAndNames);
+        			
+        		} else if(displayType === "id-name-position") {
+
+        			displayStrings = pelicansToShow.map(getIdNameAndPosition);
+
+        		}
+
+        		return displayStrings;
+        	}	
+
+        	var updateDisplay = function() {
+        		var stringsToDisplay = getDisplayedPlayerStrings();
+        		if(shouldSort) {
+        			stringsToDisplay = stringsToDisplay.sort();
+        		}
+				var newDisplayHtml = stringsToDisplay.map(function(s) { 
+					return "<li>" + s + "</li>"; 
+				}).join("\n");
+
+        		$("[id=players-display]").html( newDisplayHtml );
+
+                var footerContents = stringsToDisplay.length+" of "+pelicans.length+" shown";
+                $("footer").html(footerContents);
+        	}
+        	
+        	$("[name=whatToShow]").on("change", function(e){
+        		displayType = $(e.target).val();
+        		updateDisplay();
+        	});
+        	$("[name=shouldSort]").on("change", function(e){
+        		shouldSort = $(e.target).is(':checked');
+        		updateDisplay();
+        	});
+            // changes the value of filterPlayersWithoutPosition to true or false
+            // depending on if the checkbox with name="hidePlayersWithoutPosition"
+            // is checked, and then calls updateDisplay() to change which players 
+            // are showing
+            $("[name=hidePlayersWithoutPosition]").on('click',function(e) { 
+                filterPlayersWithoutPosition = $(e.target).is(':checked');
+                console.log("clicked on hidePlayersWithoutPositon. filterPlayersWithoutPosition = ",filterPlayersWithoutPosition);
+                updateDisplay();
+            });
+            // As above, sets filterMinorPlayers to true/false depending on if
+            // checkbox with name="showOnlyMajorPlayers" is checked
+            $("[name=showOnlyMajorPlayers]").on('click',function(e) {
+                filterMinorPlayers = $(e.target).is(':checked');
+                console.log("clicked on showOnlyMajorPlayers. filterMinorPlayers = ",filterMinorPlayers);
+                updateDisplay();
+            });
+            // As above, sets filterPlayersByWins to true/false depending on if
+            // checkbox with name="hidePlayersUsingWins" is checked
+            $("[name=hidePlayersUsingWins]").on('click',function(e) {
+                filterPlayersByWins = $(e.target).is(':checked');
+                console.log("clicked on hidePlayersUsingWins. filterPlayersByWins = ",filterPlayersByWins);
+                updateDisplay();
+            });
+            // updates the value of minNumberOfWins to match that of the text field
+            // with name="minNumberOfWins" whenever that field changes
+            $("[name=minNumberOfWins]").on('input',function(e) {
+                minNumberOfWins = $("[name=minNumberOfWins]").val();
+                console.log("clicked on minNumberOfWins. minNumberOfWins = ",minNumberOfWins);
+                updateDisplay();
+            });
+             $("[name=showPlayersWithGoodFreeThrowPercentage]").on('click',function(e) {
+                filterPlayersByFreeThrowPercentage = $(e.target).is(':checked');
+                updateDisplay();
+            });
+
+
+        	updateDisplay();
+
+            window.pelicans = pelicans;
+        });
+    })();
+    </script>
+</body>
+</html>
