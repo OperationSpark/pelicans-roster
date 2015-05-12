@@ -152,7 +152,7 @@ Copy and paste the code above into your file so that the checkboxes appear below
 
 jQuery is a bunch of popular and very helpful methods for using javascript with web pages. That's what the `$(...)` stuff is! We're using it here to respond to clicks on buttons. 
 
-Copy and paste the javascript code below into the appropriate place
+Copy and paste the javascript code after the other code that uses jQuery. 
 
 ```js
 // changes the value of filterPlayersWithoutPosition to true or false
