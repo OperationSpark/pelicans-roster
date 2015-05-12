@@ -92,7 +92,7 @@ The player id when selecting the last radio button isn't really as important. Ma
 
 In Part 2, we will learn how to use the array `filter()` function in order to change which players are shown. Make sure you've completed all the steps in Part 1 before working on Part 2!
 
-In order to use `filter()` you must pass it a function that takes a particular item in the array and returns true or false. If your function returns true, the item is included in the returned array otherwise it is not. 
+In order to use `filter()` you must pass it a function that takes a particular item in the array and returns `true` or `false`. If your function returns `true`, the item is included in the returned array otherwise it is not. 
 
 ## Getting Started - Javascript
 
