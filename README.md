@@ -64,7 +64,7 @@ Sorting an array of strings alphabetically is very easy.
 
      var sortedArrayOfStrings = arrayOfStrings.sort();
 
-Find the `TODO 6` marker. Write some code to sort `stringsToDisplay` if `shouldSort` is true. Assign the results to `stringsToDisplay`.
+Find the `TODO 6` marker. Write some code to sort `stringsToDisplay` if `shouldSort` is `true`. Assign the results to `stringsToDisplay`.
 
 Play around with the UI. You should now be able to sort the display by checking that box.
 
@@ -193,7 +193,7 @@ When you are done, reload the page. You should have no errors displayed in the c
 
 ## Filter Players By Position
 
-Whenever the checkbox labelled "Hide players without a position" is clicked, the `filterPlayersWithoutPosition` is set to true or false depending on if the checkbox is checked or not. We want to show or hide players based on their position whenever the checkbox is clicked.
+Whenever the checkbox labelled "Hide players without a position" is clicked, the `filterPlayersWithoutPosition` is set to `true` or `false` depending on if the checkbox is checked or not. We want to show or hide players based on their position whenever the checkbox is clicked.
 
 Write a function `hasPosition` which takes a player and return `true` if they have a position
 
